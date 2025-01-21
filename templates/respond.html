@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기가채드 고민 상담소</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 중앙 상단 이미지 -->
+
+        <div class="blur-wrapper">
+            <img id="gigachad-image" src="" alt="기가채드 이미지" class="gigachad-image blur-image">
+        </div>
+        <div id="response" class="speech-bubble">
+            <span class="gigachad-response">{{ response }}</span>
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            "/static/images/gigachad1.webp",
+            "/static/images/gigachad2.webp",
+            "/static/images/gigachad3.webp",
+        ];
+
+        // 랜덤 이미지 선택 및 적용
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        document.getElementById("gigachad-image").src = randomImage;
+    </script>
+</body>
+</html>

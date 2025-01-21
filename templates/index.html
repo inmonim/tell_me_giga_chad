@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기가채드 고민 상담소</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 중앙 상단 이미지 -->
+
+        <div class="blur-wrapper">
+            <img id="gigachad-image" src="" alt="기가채드 이미지" class="gigachad-image blur-image">
+        </div>
+
+        <!-- 질문 박스 -->
+        <h1 class="question">오늘의 고민은 뭐야, Bro??</h1>
+
+        <!-- 입력 박스 -->
+        <form id="bro-form" form action="/respond" method="post">
+            <input type="text" name="user_question" id="bro-input" placeholder="여기에 고민을 적어줘, Bro!" required>
+            <button type="submit"  class="submit-button">Plz, Tell me Giga-Chad</button>
+        </form>
+
+        <!-- 로딩 메시지 -->
+        <div class="loading" id="loading-message" style="display: none"><h2>기가 생각 중<span id="dots"></span><h2></h2></div>
+
+    </div>
+
+    <script>
+
+        const form = document.getElementById("bro-form");
+        const loadingMessage = document.getElementById("loading-message");
+        const dots = document.getElementById("dots");
+        let dotInterval; // 점 애니메이션 인터벌
+
+        // 폼 제출 이벤트 리스너
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // 기본 제출 동작 막기
+
+            // 폼 숨기기
+            form.style.display = "none";
+
+            // 로딩 메시지 표시
+            loadingMessage.style.display = "block";
+
+            // 점 애니메이션 시작
+            let count = 0;
+            dotInterval = setInterval(() => {
+                count = (count + 1) % 4; // 0, 1, 2, 3 순환
+                dots.textContent = ".".repeat(count);
+            }, 500); // 500ms마다 업데이트
+
+            setTimeout(() => {
+                form.submit(); // 페이지 이동
+            }, 100); // 지연을 통해 애니메이션이 유지되도록 함
+        });
+
+        const images = [
+            "/static/images/gigachad1.webp",
+            "/static/images/gigachad2.webp",
+            "/static/images/gigachad3.webp",
+        ];
+
+        // 랜덤 이미지 선택 및 적용
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        document.getElementById("gigachad-image").src = randomImage;
+    </script>
+</body>
+</html>
