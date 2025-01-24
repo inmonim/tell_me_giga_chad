@@ -29,6 +29,27 @@
     </div>
 
     <script>
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                // 캐싱된 페이지가 로드될 경우
+                form.style.display = "block"; // 폼 다시 표시
+                loadingMessage.style.display = "none"; // 로딩 메시지 숨김
+                dots.textContent = "."; // 점 애니메이션 초기화
+                clearInterval(dotInterval); // 점 애니메이션 중단
+            }
+        });
+
+        const images = [
+            "/static/images/gigachad1.webp",
+            "/static/images/gigachad2.webp",
+            "/static/images/gigachad3.webp",
+        ];
+
+        // 랜덤 이미지 선택 및 적용
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        document.getElementById("gigachad-image").src = randomImage;
+
+        const textarea = document.getElementById("bro-input");
 
         const form = document.getElementById("bro-form");
         const loadingMessage = document.getElementById("loading-message");
@@ -38,7 +59,10 @@
         // 폼 제출 이벤트 리스너
         form.addEventListener("submit", function (event) {
             event.preventDefault(); // 기본 제출 동작 막기
-
+            if (textarea.value.length > 200) {
+                alert("Bro! 나는 200자 넘는 말을 이해할 수 없어!");
+                return ;
+            }
             // 폼 숨기기
             form.style.display = "none";
 
@@ -56,16 +80,6 @@
                 form.submit(); // 페이지 이동
             }, 100); // 지연을 통해 애니메이션이 유지되도록 함
         });
-
-        const images = [
-            "/static/images/gigachad1.webp",
-            "/static/images/gigachad2.webp",
-            "/static/images/gigachad3.webp",
-        ];
-
-        // 랜덤 이미지 선택 및 적용
-        const randomImage = images[Math.floor(Math.random() * images.length)];
-        document.getElementById("gigachad-image").src = randomImage;
     </script>
 </body>
 </html>

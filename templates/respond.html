@@ -19,6 +19,7 @@
         <div id="response" class="speech-bubble">
             <span class="gigachad-response">{{ response }}</span>
         </div>
+        <a href="/" class="submit-button">다시 물어보기</a>
     </div>
 
     <script>
@@ -31,6 +32,21 @@
         // 랜덤 이미지 선택 및 적용
         const randomImage = images[Math.floor(Math.random() * images.length)];
         document.getElementById("gigachad-image").src = randomImage;
+
+        // 이전 페이지로 리다이렉트
+        window.onload = function () {
+            // 현재 새로고침인지 확인
+            if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+                // 이전 페이지가 존재하면 리다이렉트
+                if (document.referrer) {
+                    window.location.href = document.referrer;
+                } else {
+                    // 이전 페이지가 없는 경우 기본 URL로 이동
+                    window.location.href = "/";
+                }
+            }
+        };
+        
     </script>
 </body>
 </html>
